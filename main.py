@@ -24,4 +24,6 @@ login_btn.click()
 
 error_message = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='error']")))
 print(error_message.text == "Epic sadface: Username and password do not match any user in this service")
+
+driver.save_screenshot("1.png")
 sleep(10)
