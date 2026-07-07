@@ -1,16 +1,20 @@
 from selenium import webdriver
 import pytest
 from selenium.webdriver.support.ui import WebDriverWait
-import random
+import datetime
+import os
 
 @pytest.fixture # her teste çalışmadan önce bu fonksiyon çalışacak ve driver objesini test fonksiyonuna gönderecek.
-def driver():
+def driver(request):
     driver = webdriver.Chrome()
     driver.get("https://www.saucedemo.com/")
     # yield => testi çalıştır
     yield driver # return => fonksiyonu bitir ve döndür.
-    rnd = random.randint(1,1000)
-    driver.save_screenshot(filename=f"screenshot_{rnd}.png")
+    #TODO: Geliştir.
+    folder_name = f"screenshots-{datetime.datetime.now().strftime('%Y-%m-%d %H')}"
+    if os.path.exists(folder_name) == False:
+        os.mkdir(folder_name)
+    driver.save_screenshot(filename=f"{folder_name}/screenshot_{request.node.name}.png")
     driver.quit()
     # yield => döndür ama bitirme, devamı gelecek.
 
