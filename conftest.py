@@ -14,7 +14,7 @@ def driver(request):
     folder_name = f"screenshots-{datetime.datetime.now().strftime('%Y-%m-%d %H')}"
     if os.path.exists(folder_name) == False:
         os.mkdir(folder_name)
-    driver.save_screenshot(filename=f"{folder_name}/screenshot_{request.node.name}.png")
+    #driver.save_screenshot(filename=f"{folder_name}/screenshot_{request.node.name}.png")
     driver.quit()
     # yield => döndür ama bitirme, devamı gelecek.
 
