@@ -8,15 +8,8 @@ import os
 def driver(request):
     driver = webdriver.Chrome()
     driver.get("https://www.saucedemo.com/")
-    # yield => testi çalıştır
-    yield driver # return => fonksiyonu bitir ve döndür.
-    #TODO: Geliştir.
-    folder_name = f"screenshots-{datetime.datetime.now().strftime('%Y-%m-%d %H')}"
-    if os.path.exists(folder_name) == False:
-        os.mkdir(folder_name)
-    #driver.save_screenshot(filename=f"{folder_name}/screenshot_{request.node.name}.png")
+    yield driver
     driver.quit()
-    # yield => döndür ama bitirme, devamı gelecek.
 
 @pytest.fixture
 def wait(driver):
