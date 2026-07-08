@@ -3,6 +3,8 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 import datetime
 import os
+from pages.login_page import LoginPage
+
 
 @pytest.fixture # her teste çalışmadan önce bu fonksiyon çalışacak ve driver objesini test fonksiyonuna gönderecek.
 def driver(request):
@@ -19,4 +21,19 @@ def wait(driver):
 @pytest.fixture
 def wait_second(driver):
     wait = WebDriverWait(driver, 10)
+    yield wait
+
+@pytest.fixture
+def authed_driver():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+    wait = WebDriverWait(driver, 20)
+    login_page = LoginPage(driver, wait)
+    login_page.login("standard_user", "secret_sauce")
+    yield driver
+    driver.quit()
+
+@pytest.fixture
+def authed_driver_wait(authed_driver):
+    wait = WebDriverWait(authed_driver, 20)
     yield wait
