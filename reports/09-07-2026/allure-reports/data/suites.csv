@@ -1,0 +1,5 @@
+"DESCRİPTİON","DURATİON İN MS","NAME","PARENT SUİTE","START TİME","STATUS","STOP TİME","SUB SUİTE","SUİTE","TEST CLASS","TEST METHOD"
+"Geçerli giriş bilgileriyle giriş yapıldığında kullanıcıların ana sayfasına yönlendirildiğini doğrular.","172","Geçerli giriş bilgileriyle giriş yapma.","tests","2026-07-09","passed","2026-07-09","","test_login","",""
+"Login sayfasında yanlış bilgilerle giriş yapıldığında hata mesajının görüntülendiğini doğrular.","162","Login sayfasında yanlış bilgilerle giriş.","tests","2026-07-09","passed","2026-07-09","","test_login","",""
+"","162","test_username_required","tests","2026-07-09","passed","2026-07-09","","test_login","",""
+"","19","test_item_count","tests","2026-07-09","passed","2026-07-09","","test_homepage","",""
