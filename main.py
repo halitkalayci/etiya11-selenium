@@ -62,16 +62,20 @@ wait = WebDriverWait(driver, 10)
 # print(h3.text)
 
 
-driver.get("https://the-internet.herokuapp.com/iframe")
+# driver.get("https://the-internet.herokuapp.com/iframe")
 
-# ilgili frame'i bul ve geçiş yap
-wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, "mce_0_ifr")))
+# # ilgili frame'i bul ve geçiş yap
+# wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, "mce_0_ifr")))
 
-content = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='tinymce']/p")))
-print(content.text)
+# content = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='tinymce']/p")))
+# print(content.text)
 
-driver.switch_to.default_content() # varsayılan dom'a dön
-title = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='content']/div/h3")))
-print(title.text)
+# driver.switch_to.default_content() # varsayılan dom'a dön
+# title = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='content']/div/h3")))
+# print(title.text)
 
-sleep(10)
+driver.get("https://the-internet.herokuapp.com/infinite_scroll")
+sleep(1)
+while True:
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    sleep(1)
