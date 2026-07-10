@@ -5,18 +5,47 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from time import sleep
 driver = Chrome()
 
-driver.get("https://the-internet.herokuapp.com/dynamic_loading/1")
+# driver.get("https://the-internet.herokuapp.com/dynamic_loading/1")
 
 wait = WebDriverWait(driver, 10)
 
-start_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='start']/button")))
-start_button.click()
+# start_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='start']/button")))
+# start_button.click()
 
-# yükleme aksiyonunun tamamlanmasını bekle
-loader = wait.until(EC.invisibility_of_element_located((By.ID, "loading")))
+# # yükleme aksiyonunun tamamlanmasını bekle
+# loader = wait.until(EC.invisibility_of_element_located((By.ID, "loading")))
 
-finish_div = wait.until(EC.visibility_of_element_located((By.ID, "finish")))
-print(finish_div.text)
+# finish_div = wait.until(EC.visibility_of_element_located((By.ID, "finish")))
+# print(finish_div.text)
+
+driver.get("https://the-internet.herokuapp.com/javascript_alerts")
+
+js_alert_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[1]/button")))
+
+js_alert_btn.click()
+
+alert = wait.until(EC.alert_is_present())
+sleep(1)
+alert.accept()
+
+js_confirm_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[2]/button")))
+js_confirm_btn.click()
+
+confirm = wait.until(EC.alert_is_present())
+sleep(1)
+confirm.dismiss()
+
+
+js_prompt_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[3]/button")))
+js_prompt_btn.click()
+
+prompt = wait.until(EC.alert_is_present())
+sleep(1)
+prompt.send_keys("deneme")
+sleep(1)
+prompt.accept()
+
+sleep(10)
