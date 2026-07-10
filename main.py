@@ -21,31 +21,43 @@ wait = WebDriverWait(driver, 10)
 # finish_div = wait.until(EC.visibility_of_element_located((By.ID, "finish")))
 # print(finish_div.text)
 
-driver.get("https://the-internet.herokuapp.com/javascript_alerts")
+# driver.get("https://the-internet.herokuapp.com/javascript_alerts")
 
-js_alert_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[1]/button")))
+# js_alert_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[1]/button")))
 
-js_alert_btn.click()
+# js_alert_btn.click()
 
-alert = wait.until(EC.alert_is_present())
-sleep(1)
-alert.accept()
+# alert = wait.until(EC.alert_is_present())
+# sleep(1)
+# alert.accept()
 
-js_confirm_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[2]/button")))
-js_confirm_btn.click()
+# js_confirm_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[2]/button")))
+# js_confirm_btn.click()
 
-confirm = wait.until(EC.alert_is_present())
-sleep(1)
-confirm.dismiss()
+# confirm = wait.until(EC.alert_is_present())
+# sleep(1)
+# confirm.dismiss()
 
 
-js_prompt_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[3]/button")))
-js_prompt_btn.click()
+# js_prompt_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/ul/li[3]/button")))
+# js_prompt_btn.click()
 
-prompt = wait.until(EC.alert_is_present())
-sleep(1)
-prompt.send_keys("deneme")
-sleep(1)
-prompt.accept()
+# prompt = wait.until(EC.alert_is_present())
+# sleep(1)
+# prompt.send_keys("deneme")
+# sleep(1)
+# prompt.accept()
 
+
+
+
+driver.get("https://the-internet.herokuapp.com/windows")
+
+
+link = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/a")))
+link.click()
+# sekmeler arası gezmek istiyorsan switch_to.window(SEKME)
+driver.switch_to.window(driver.window_handles[1])
+h3 = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/h3")))
+print(h3.text)
 sleep(10)
