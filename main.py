@@ -51,13 +51,27 @@ wait = WebDriverWait(driver, 10)
 
 
 
-driver.get("https://the-internet.herokuapp.com/windows")
+# driver.get("https://the-internet.herokuapp.com/windows")
 
 
-link = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/a")))
-link.click()
-# sekmeler arası gezmek istiyorsan switch_to.window(SEKME)
-driver.switch_to.window(driver.window_handles[1])
-h3 = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/h3")))
-print(h3.text)
+# link = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='content']/div/a")))
+# link.click()
+# # sekmeler arası gezmek istiyorsan switch_to.window(SEKME)
+# driver.switch_to.window(driver.window_handles[1])
+# h3 = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div/h3")))
+# print(h3.text)
+
+
+driver.get("https://the-internet.herokuapp.com/iframe")
+
+# ilgili frame'i bul ve geçiş yap
+wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, "mce_0_ifr")))
+
+content = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='tinymce']/p")))
+print(content.text)
+
+driver.switch_to.default_content() # varsayılan dom'a dön
+title = wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='content']/div/h3")))
+print(title.text)
+
 sleep(10)
